@@ -6,7 +6,7 @@ Software Engineering Labs - Fourth Semester
     <li> <em>verificatorul</em>  poate  înregistra  un  bug,  dându-i  o  denumire, o severitate  si  o  descriere;  imediat  dupa înregistrarea bug-ului, toti  programatorii vad  lista bug-urilor  actualizata cu obiectul nou introdus; </li>
     <li> <em>programatorul</em> vizualizeaza lista bug-urilor; de asemenea, programatorul poate selecta un bug din lista si poate declansa un buton prin care declara ca bug-ul a fost eliminat, caz în care bug-ul este scos din lista tuturor programatorilor.  </li>
     <li> autentificare verificator si programator </li>
-    <li> posibilitatea precizarii daca la un bug lucreaza deja un programator sau nu </li>
+    <li> posibilitatea precizarii daca la un bug lucreaza deja un programator sau nu - toti programatorii vad lista bug-urilor actualizata</li>
     <li> filtrare bug-uri dupa severitatea lor </li>
   </ul>
 </p>
