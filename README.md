@@ -8,5 +8,6 @@ Software Engineering Labs - Fourth Semester
     <li> autentificare verificator si programator </li>
     <li> posibilitatea precizarii daca la un bug lucreaza deja un programator sau nu - toti programatorii vad lista bug-urilor actualizata</li>
     <li> filtrare bug-uri dupa severitatea lor </li>
+    <li> <em>verificatorul</em> poate vizualiza bug-urile adaugate de el </li>
   </ul>
 </p>
