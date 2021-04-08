@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<!--    Menu-->
+    <HBox layoutX="71.0" layoutY="73.0" prefHeight="100.0" prefWidth="200.0" styleClass="blue" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" HBox.hgrow="ALWAYS">
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/iconUserMenu.png" />
+            </ImageView>
+            <Label text="Home" />
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10" HBox.hgrow="ALWAYS">
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/bug.png" />
+            </ImageView>
+            <Label text="View bugs" />
+         <styleClass>
+            <String fx:value="menuItem" />
+            <String fx:value="selectedItem" />
+         </styleClass>
+        </HBox>
+    </HBox>
+<!--    End of menu-->
+    <VBox layoutX="31.0" layoutY="178.0" prefHeight="100.0" prefWidth="200.0" styleClass="grey" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <HBox prefHeight="232.0" prefWidth="600.0" spacing="20" VBox.vgrow="ALWAYS">
+            <TableView prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn prefWidth="75.0" text="Name" />
+                    <TableColumn prefWidth="75.0" text="Severity" />
+                    <TableColumn prefWidth="75.0" text="Status" />
+                </columns>
+                <HBox.margin>
+                    <Insets left="20.0" top="20.0" />
+                </HBox.margin>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+            <TextArea prefHeight="200.0" prefWidth="200.0" promptText="This is where the description of the selected bug will appear" HBox.hgrow="ALWAYS">
+                <HBox.margin>
+                    <Insets right="20.0" top="20.0" />
+                </HBox.margin>
+            </TextArea>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20" HBox.hgrow="ALWAYS">
+                <Button mnemonicParsing="false" text="In works" />
+                <Button mnemonicParsing="false" text="Resolved" />
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="206.0" spacing="5" HBox.hgrow="ALWAYS">
+                <ComboBox prefWidth="150.0" />
+                <Button mnemonicParsing="false" text="Filter" />
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>
