@@ -17,8 +17,6 @@ public class BugValidator implements Validator<Long, Bug> {
             errors += "Invalid status\n";
         if(!validateTester(entity))
             errors += "Invalid tester\n";
-        if(!validateProgrammer(entity))
-            errors += "Invalid programmer\n";
         if(!errors.equals(""))
             throw new ValidationException(errors);
     }
@@ -71,15 +69,5 @@ public class BugValidator implements Validator<Long, Bug> {
      */
     private boolean validateTester(Bug entity){
         return entity.getTester() != null;
-    }
-
-    /**
-     * Method for verifying the programmer of a bug
-     * @param entity: Bug, bug to check
-     * @return - true, if {@code entity}'s programmer is not null
-     *         - false, otherwise
-     */
-    private boolean validateProgrammer(Bug entity){
-        return entity.getProgrammer() != null;
     }
 }

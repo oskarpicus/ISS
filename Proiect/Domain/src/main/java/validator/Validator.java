@@ -2,7 +2,9 @@ package validator;
 
 import domain.Entity;
 
-public interface Validator<ID, E extends Entity<ID>> {
+import java.io.Serializable;
+
+public interface Validator<ID extends Serializable, E extends Entity<ID>> {
 
     /**
      * Validates a given entity

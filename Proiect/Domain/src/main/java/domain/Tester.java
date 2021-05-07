@@ -1,13 +1,17 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class Tester extends User {
-    private final List<Bug> foundBugs = new ArrayList<>();
+    private Set<Bug> foundBugs;
 
-    public Tester(Long id, String username, String password) {
+    public Tester(Long id, String username, String password, Set<Bug> foundBugs) {
         super(id, username, password);
+        this.foundBugs = foundBugs;
+    }
+
+    public Tester(){
+
     }
 
     /**
@@ -16,15 +20,22 @@ public class Tester extends User {
      */
     public void addBug(Bug bug){
         foundBugs.add(bug);
-        bug.basicSetTester(this);
     }
 
     /**
      * Method for retrieving all the bugs that were found by a {@code Tester}
-     * @return list of the founds bugs of the current {@code Tester}
+     * @return collection of the found bugs of the current {@code Tester}
      */
-    public List<Bug> getFoundBugs() {
+    public Set<Bug> getFoundBugs() {
         return foundBugs;
+    }
+
+    /**
+     * Setter for the collection of found bugs by a {@code Tester}
+     * @param foundBugs: Set of found bugs
+     */
+    public void setFoundBugs(Set<Bug> foundBugs) {
+        this.foundBugs = foundBugs;
     }
 
     /**

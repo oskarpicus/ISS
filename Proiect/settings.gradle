@@ -1,4 +1,5 @@
 rootProject.name = 'Proiect'
 include 'Client'
 include 'Domain'
+include 'Repository'
 

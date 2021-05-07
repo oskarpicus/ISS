@@ -1,6 +1,7 @@
 package domain;
 
-public class User extends Entity<Long>{
+public class User implements Entity<Long>{
+    private Long id;
     private String username;
     private String password;
 
@@ -9,7 +10,7 @@ public class User extends Entity<Long>{
     }
 
     public User(Long id, String username, String password) {
-        super(id);
+        this.id = id;
         this.username = username;
         this.password = password;
     }
@@ -62,5 +63,15 @@ public class User extends Entity<Long>{
     @Override
     public String toString() {
         return super.toString()+" "+getUsername()+" "+getPassword();
+    }
+
+    @Override
+    public Long getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(Long aLong) {
+        this.id = aLong;
     }
 }

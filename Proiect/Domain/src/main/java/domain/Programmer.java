@@ -1,13 +1,17 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class Programmer extends User {
-    private final List<Bug> resolvedBugs = new ArrayList<>();
+    private Set<Bug> resolvedBugs;
 
-    public Programmer(Long id, String username, String password) {
+    public Programmer(Long id, String username, String password, Set<Bug> resolvedBugs) {
         super(id, username, password);
+        this.resolvedBugs = resolvedBugs;
+    }
+
+    public Programmer(){
+
     }
 
     /**
@@ -16,15 +20,22 @@ public class Programmer extends User {
      */
     public void addBug(Bug bug){
         resolvedBugs.add(bug);
-        bug.basicSetProgrammer(this);
     }
 
     /**
      * Method for retrieving all the resolved bugs of a {@code Programmer}
      * @return list of all the resolved bugs of a Programmer
      */
-    public List<Bug> getResolvedBugs() {
+    public Set<Bug> getResolvedBugs() {
         return resolvedBugs;
+    }
+
+    /**
+     * Setter for the collection of resolved bugs of a {@code Programmer}
+     * @param resolvedBugs: Set of resolved bugs
+     */
+    public void setResolvedBugs(Set<Bug> resolvedBugs) {
+        this.resolvedBugs = resolvedBugs;
     }
 
     /**

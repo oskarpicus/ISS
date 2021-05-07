@@ -1,6 +1,7 @@
 package domain;
 
-public class Bug extends Entity<Long>{
+public class Bug implements Entity<Long>{
+    private Long id;
     private String name;
     private String description;
     private Severity severity;
@@ -9,12 +10,16 @@ public class Bug extends Entity<Long>{
     private Programmer programmer;
 
     public Bug(Long id, String name, String description, Severity severity, Status status, Tester tester) {
-        super(id);
+        this.id = id;
         this.name = name;
         this.description = description;
         this.severity = severity;
         this.status = status;
         this.tester = tester;
+    }
+
+    public Bug(){
+
     }
 
     /**
@@ -118,24 +123,20 @@ public class Bug extends Entity<Long>{
      */
     public void setProgrammer(Programmer programmer) {
         this.programmer = programmer;
-        programmer.basicAddBug(this);
     }
 
-    /**
-     * Basic method for setting the tester that discovered a {@code Bug}. Does not keep the ends synchronised
-     * @param tester: Tester, the desired tester
-     * tester of the current {@code Bug} is set to {@code tester}
-     */
-    protected void basicSetTester(Tester tester){
-        this.tester = tester;
+    @Override
+    public Long getId() {
+        return this.id;
     }
 
-    /**
-     * Basic method for setting the programmer that resolved a {@code Bug}. Does not keep the ends synchronised
-     * @param programmer: Programmer, the desired programmer
-     * programmer of the current {@code Bug} is set to {@code programmer}
-     */
-    protected void basicSetProgrammer(Programmer programmer) {
-        this.programmer = programmer;
+    @Override
+    public void setId(Long aLong) {
+        this.id = aLong;
+    }
+
+    @Override
+    public String toString() {
+        return getId()+" "+getName()+" "+getDescription()+" "+getStatus()+" "+getSeverity();
     }
 }
