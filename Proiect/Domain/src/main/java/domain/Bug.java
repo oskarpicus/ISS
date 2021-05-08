@@ -1,6 +1,8 @@
 package domain;
 
-public class Bug implements Entity<Long>{
+import java.io.Serializable;
+
+public class Bug implements Entity<Long>, Serializable {
     private Long id;
     private String name;
     private String description;

@@ -27,4 +27,11 @@
         <constructor-arg ref="bugService"/>
     </bean>
 
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="MasterService"/>
+        <property name="serviceInterface" value="services.Service"/>
+        <property name="service" ref="masterService"/>
+        <property name="servicePort" value="1099"/>
+    </bean>
+
 </beans>

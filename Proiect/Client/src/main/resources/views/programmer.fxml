@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProgrammerController">
     <HBox layoutX="71.0" layoutY="73.0" prefHeight="100.0" prefWidth="200.0" styleClass="blue" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10" HBox.hgrow="ALWAYS">
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
@@ -24,19 +24,16 @@
             <Label text="View bugs" />
         </HBox>
     </HBox>
-    <VBox alignment="CENTER" layoutX="36.0" layoutY="135.0" prefHeight="300.0" prefWidth="600.0" spacing="15"
-          styleClass="grey" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <VBox alignment="CENTER" layoutX="36.0" layoutY="135.0" prefHeight="300.0" prefWidth="600.0" spacing="15" styleClass="grey" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-           <image>
-               <Image url="@../images/programmer.png"/>
-           </image>
+            <Image url="@../images/programmer.png"/>
         </ImageView>
-        <Label text="Hello Username !">
+        <Label text="Hello Username" fx:id="labelGreeting">
            <styleClass>
-               <String fx:value="blackText"/>
-               <String fx:value="title"/>
+               <String fx:value="blackText" />
+               <String fx:value="title" />
            </styleClass>
         </Label>
-        <Label styleClass="blackText" text="Let's kill some bugs !"/>
+        <Label styleClass="blackText" text="Let's kill some bugs !" />
     </VBox>
 </AnchorPane>
