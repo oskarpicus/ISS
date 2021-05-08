@@ -6,10 +6,10 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddBugController">
     <!-- Menu -->
     <VBox layoutX="14.0" layoutY="44.0" prefHeight="400.0" prefWidth="181.0" styleClass="blue" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" onMouseClicked="#buttonHomeClicked" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" VBox.vgrow="ALWAYS">
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../images/iconUserMenu.png" />
             </ImageView>
@@ -49,14 +49,14 @@
             <Label styleClass="blackText" text="Severity:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="2">
                 <Label styleClass="blackText" text="Description:" />
-                <TextArea prefHeight="89.0" prefWidth="379.0">
+                <TextArea fx:id="textAreaDescription" prefHeight="89.0" prefWidth="379.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin></TextArea>
             </VBox>
-            <TextField alignment="CENTER" maxWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldName" alignment="CENTER" maxWidth="-Infinity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="comboBoxSeverity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
         </GridPane>
-        <Button mnemonicParsing="false" text="Confirm" />
+        <Button mnemonicParsing="false" onAction="#buttonConfirmClicked" text="Confirm" />
     </VBox>
 </AnchorPane>

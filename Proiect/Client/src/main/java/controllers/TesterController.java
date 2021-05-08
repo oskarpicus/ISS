@@ -4,6 +4,7 @@ import domain.Tester;
 import domain.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import services.Service;
 
@@ -36,5 +37,9 @@ public class TesterController implements Controller {
     @Override
     public User getLoggedUser() {
         return loggedTester;
+    }
+
+    public void buttonAddBugClicked(MouseEvent mouseEvent) {
+        openWindow(Window.addBug);
     }
 }

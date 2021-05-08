@@ -17,7 +17,7 @@
             <String fx:value="selectedItem" />
          </styleClass>
         </VBox>
-        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" onMouseClicked="#buttonAddBugClicked" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" VBox.vgrow="ALWAYS">
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../images/addBug.png" />
             </ImageView>
@@ -34,7 +34,7 @@
         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
             <Image url="@../images/programing.png" />
         </ImageView>
-        <Label alignment="CENTER" text="Hello Username" wrapText="true" VBox.vgrow="ALWAYS" fx:id="labelGreeting">
+        <Label fx:id="labelGreeting" alignment="CENTER" text="Hello Username" wrapText="true" VBox.vgrow="ALWAYS">
            <styleClass>
                <String fx:value="title" />
                <String fx:value="blackText" />
