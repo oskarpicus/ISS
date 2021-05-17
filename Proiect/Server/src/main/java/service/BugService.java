@@ -46,4 +46,16 @@ public class BugService {
         }
         return null;
     }
+
+    /**
+     * Method for obtaining all the registered bugs
+     * @return l: List<Bug>, containing all the registered bugs
+     */
+    public List<Bug> findAll() {
+        logger.traceEntry("Entry Find All Bugs");
+        Iterable<Bug> result = repository.findAll();
+        List<Bug> resultList = StreamSupport.stream(result.spliterator(), false).collect(Collectors.toList());
+        logger.traceExit("Exit Find All Bugs {}", resultList);
+        return resultList;
+    }
 }

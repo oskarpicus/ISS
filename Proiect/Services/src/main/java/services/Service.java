@@ -33,4 +33,22 @@ public interface Service {
      * @return l: List<Bug>, the bugs added by tester
      */
     List<Bug> findBugsByTester(Tester tester);
+
+    /**
+     * Method for obtaining all the registered bugs
+     * @return l: List<Bug>, containing all the registered bugs
+     */
+    List<Bug> getAllBugs();
+
+    /**
+     * Method for adding an observer
+     * @param observer: Observer, the client that made the request
+     */
+    void addObserver(Observer observer);
+
+    /**
+     * Method for removing an observer
+     * @param observer: Observer, the client that made the request
+     */
+    void removeObserver(Observer observer);
 }

@@ -5,6 +5,5 @@ public enum Window {
     addBug,
     programmer,
     tester,
-    viewBugsProgrammer,
     viewBugsTester
 }
