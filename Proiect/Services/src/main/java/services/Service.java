@@ -1,7 +1,10 @@
 package services;
 
 import domain.Bug;
+import domain.Tester;
 import domain.User;
+
+import java.util.List;
 
 public interface Service {
 
@@ -23,4 +26,11 @@ public interface Service {
      *          - the bug, otherwise
      */
     Bug addBug(Bug bug);
+
+    /**
+     * Method for finding the bugs added by a tester
+     * @param tester: Tester, the tester that added the bugs
+     * @return l: List<Bug>, the bugs added by tester
+     */
+    List<Bug> findBugsByTester(Tester tester);
 }

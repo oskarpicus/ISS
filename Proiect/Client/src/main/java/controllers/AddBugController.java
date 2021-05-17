@@ -69,4 +69,8 @@ public class AddBugController implements Controller{
             MyAlert.showErrorMessage(null, e.getMessage());
         }
     }
+
+    public void buttonViewBugsClicked(MouseEvent mouseEvent) {
+        openWindow(Window.viewBugsTester);
+    }
 }

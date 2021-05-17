@@ -25,7 +25,7 @@
             <String fx:value="selectedItem" />
          </styleClass>
         </VBox>
-        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" onMouseClicked="#buttonViewBugsClicked" prefHeight="100.0" prefWidth="200.0" spacing="10" styleClass="menuItem" VBox.vgrow="ALWAYS">
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../images/bug.png" />
             </ImageView>

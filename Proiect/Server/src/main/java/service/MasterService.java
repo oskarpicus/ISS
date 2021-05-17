@@ -1,11 +1,13 @@
 package service;
 
 import domain.Bug;
+import domain.Tester;
 import domain.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import services.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 public class MasterService implements Service {
@@ -33,6 +35,14 @@ public class MasterService implements Service {
         Optional<Bug> resultAdd = bugService.add(bug);
         Bug result = resultAdd.orElse(null);
         logger.traceExit("Exit Add Bug result {}", result);
+        return result;
+    }
+
+    @Override
+    public List<Bug> findBugsByTester(Tester tester) {
+        logger.traceEntry("Entry Find Bugs By Tester {}", tester);
+        var result = bugService.findBugsByTester(tester);
+        logger.traceExit("Exit Find Bugs By Tester result {}", result);
         return result;
     }
 }

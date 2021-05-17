@@ -42,4 +42,8 @@ public class TesterController implements Controller {
     public void buttonAddBugClicked(MouseEvent mouseEvent) {
         openWindow(Window.addBug);
     }
+
+    public void buttonViewBugsClicked(MouseEvent mouseEvent) {
+        openWindow(Window.viewBugsTester);
+    }
 }
