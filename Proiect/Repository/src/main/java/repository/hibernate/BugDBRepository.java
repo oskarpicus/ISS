@@ -2,6 +2,7 @@ package repository.hibernate;
 
 import domain.Bug;
 import domain.Severity;
+import domain.Status;
 import domain.Tester;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -25,7 +26,8 @@ public class BugDBRepository extends AbstractDBRepository<Long, Bug> implements 
 
     @Override
     protected Query<Bug> getFindAllQuery(Session session) {
-        return session.createQuery("from Bug", Bug.class);
+        return session.createQuery("from Bug where status!=:status", Bug.class)
+                .setParameter("status", Status.RESOLVED);
     }
 
     @Override

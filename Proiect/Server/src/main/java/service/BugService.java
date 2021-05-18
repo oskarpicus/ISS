@@ -72,4 +72,18 @@ public class BugService {
         logger.traceExit("Exit Find Bugs By Severity {}", resultList);
         return resultList;
     }
+
+    /**
+     * Method for updating a bug
+     * @param bug: Bug, the bug to be updated
+     * @return an {@code Optional}
+     *          - null, if the {@code bug} was successfully updated
+     *          - the bug, otherwise
+     */
+    public Optional<Bug> update(Bug bug) {
+        logger.traceEntry("Entry Update Bug {}", bug);
+        Optional<Bug> result = this.repository.update(bug);
+        logger.traceExit("Exit Update Bug result {}", result);
+        return result;
+    }
 }

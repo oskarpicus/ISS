@@ -45,6 +45,7 @@ public class MasterService implements Service {
                     observer.addedBug(bug);
                 } catch (RemoteException e) {
                     e.printStackTrace();
+                    logger.error(e);
                 }
             });
         }
@@ -88,5 +89,22 @@ public class MasterService implements Service {
         List<Bug> result = this.bugService.findBugsBySeverity(severity);
         logger.traceExit("Exit Find Bugs By Severity {}", result);
         return result;
+    }
+
+    @Override
+    public Bug updateBug(Bug bug) {
+        logger.traceEntry("Entry Update Bug {}", bug);
+        Optional<Bug> resultUpdate = this.bugService.update(bug);
+        if (resultUpdate.isEmpty()) {  // successfully updated
+            observers.forEach(observer -> {
+                try {
+                    observer.updatedBug(bug);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                    logger.error(e);
+                }
+            });
+        }
+        return resultUpdate.orElse(null);
     }
 }

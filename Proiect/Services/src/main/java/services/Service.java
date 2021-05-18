@@ -59,4 +59,13 @@ public interface Service {
      * @return list of bugs, all with severity
      */
     List<Bug> findBugsBySeverity(Severity severity);
+
+    /**
+     * Method for updating a bug
+     * @param bug: Bug, the bug to be updated
+     * @return
+     *          - null, if {@code bug} was successfully updated
+     *          - the bug, otherwise
+     */
+    Bug updateBug(Bug bug);
 }

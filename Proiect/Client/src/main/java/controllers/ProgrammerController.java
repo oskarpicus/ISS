@@ -1,10 +1,6 @@
 package controllers;
 
-import domain.Bug;
-import domain.Programmer;
-import domain.Severity;
-import domain.User;
-import javafx.application.Platform;
+import domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +15,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProgrammerController extends UnicastRemoteObject implements Controller, Observer, Serializable {
 
@@ -96,6 +93,16 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
         this.model.add(bug);
     }
 
+    @Override
+    public void updatedBug(Bug bug) throws RemoteException {
+        List<Bug> bugs = model.stream()  // remove the updated bug
+                .filter(bug1 -> !bug1.getId().equals(bug.getId()))
+                .collect(Collectors.toList());
+        if (bug.getStatus() != Status.RESOLVED)
+            bugs.add(bug);
+        model.setAll(bugs);
+    }
+
     public void buttonFilterBugsClicked(ActionEvent actionEvent) {
         Severity severity = comboBoxSeverity.getValue();
         if (severity == null) {
@@ -109,5 +116,31 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
     public void buttonClearClicked(ActionEvent actionEvent) {
         List<Bug> bugs = service.getAllBugs();
         displayBugs(bugs);
+    }
+
+    public void buttonResolvedBugClicked(ActionEvent actionEvent) {
+        Bug bug = getSelectedBug();
+        if (bug == null) {  // nothing was selected
+            MyAlert.showMessage(null, Alert.AlertType.WARNING, "Warning", "You have not selected any bug");
+            return;
+        }
+        try {
+            Programmer p = (Programmer)this.getLoggedUser();
+            bug.setStatus(Status.RESOLVED);
+            bug.setProgrammer(p);
+            if (this.service.updateBug(bug) == null) {
+                MyAlert.showMessage(null, Alert.AlertType.CONFIRMATION, "Confirmation", "Bug successfully resolved");
+                updatedBug(bug);
+                this.textAreaDescription.clear();
+            }
+            else
+                MyAlert.showMessage(null, Alert.AlertType.WARNING, "Warning", "Failed to resolve bug");
+        } catch (Exception e) {
+            MyAlert.showErrorMessage(null, e.getMessage());
+        }
+    }
+
+    public Bug getSelectedBug() {
+        return tableViewBugs.getSelectionModel().getSelectedItem();
     }
 }

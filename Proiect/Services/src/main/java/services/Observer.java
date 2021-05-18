@@ -13,4 +13,11 @@ public interface Observer extends Remote {
      * @throws RemoteException, if there is a problem
      */
     void addedBug(Bug bug) throws RemoteException;
+
+    /**
+     * Method for notifying when a bug is updated
+     * @param bug: Bug, the bug that was updated
+     * @throws RemoteException, if there is a problem
+     */
+    void updatedBug(Bug bug) throws RemoteException;
 }
