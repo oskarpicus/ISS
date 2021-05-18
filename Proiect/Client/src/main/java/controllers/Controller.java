@@ -15,11 +15,11 @@ public interface Controller {
             Pane pane = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(pane));
+            stage.show();
 
             Controller controller = loader.getController();
             controller.initialise(this.getService(), this.getLoggedUser());
             this.close();
-            stage.show();
         } catch (Exception e){
             e.printStackTrace();
         }

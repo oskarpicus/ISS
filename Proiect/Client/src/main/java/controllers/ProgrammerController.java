@@ -2,14 +2,14 @@ package controllers;
 
 import domain.Bug;
 import domain.Programmer;
+import domain.Severity;
 import domain.User;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import services.Observer;
@@ -38,6 +38,8 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
     transient TableColumn<Bug, String> tableColumnStatus;
     @FXML
     transient TextArea textAreaDescription;
+    @FXML
+    transient ComboBox<Severity> comboBoxSeverity;
 
     public ProgrammerController() throws RemoteException {
     }
@@ -66,8 +68,13 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
             }
         });
 
+        comboBoxSeverity.setItems(FXCollections.observableArrayList(Severity.values()));
+
         this.service.addObserver(this);
         displayBugs(this.service.getAllBugs());
+
+        Stage stage = (Stage) labelGreeting.getScene().getWindow();
+        stage.setOnCloseRequest(event -> this.service.removeObserver(this));
     }
 
     @Override
@@ -87,5 +94,20 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
     @Override
     public void addedBug(Bug bug) throws RemoteException {
         this.model.add(bug);
+    }
+
+    public void buttonFilterBugsClicked(ActionEvent actionEvent) {
+        Severity severity = comboBoxSeverity.getValue();
+        if (severity == null) {
+            MyAlert.showMessage(null, Alert.AlertType.WARNING, "Warning", "You have not selected any severity");
+            return;
+        }
+        List<Bug> bugs = service.findBugsBySeverity(severity);
+        displayBugs(bugs);
+    }
+
+    public void buttonClearClicked(ActionEvent actionEvent) {
+        List<Bug> bugs = service.getAllBugs();
+        displayBugs(bugs);
     }
 }

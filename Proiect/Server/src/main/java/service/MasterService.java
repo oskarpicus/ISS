@@ -1,6 +1,7 @@
 package service;
 
 import domain.Bug;
+import domain.Severity;
 import domain.Tester;
 import domain.User;
 import org.apache.logging.log4j.LogManager;
@@ -69,11 +70,23 @@ public class MasterService implements Service {
 
     @Override
     public void addObserver(Observer observer) {
+        logger.traceEntry("Entry Add Observer {}", observer);
         observers.add(observer);
+        logger.traceExit("Exit Add Observer");
     }
 
     @Override
     public void removeObserver(Observer observer) {
+        logger.traceEntry("Entry Remove Observer {}", observer);
         observers.remove(observer);
+        logger.traceExit("Exit Remove Observer");
+    }
+
+    @Override
+    public List<Bug> findBugsBySeverity(Severity severity) {
+        logger.traceEntry("Entry Find Bugs By Severity {}", severity);
+        List<Bug> result = this.bugService.findBugsBySeverity(severity);
+        logger.traceExit("Exit Find Bugs By Severity {}", result);
+        return result;
     }
 }

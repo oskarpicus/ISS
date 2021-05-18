@@ -1,6 +1,7 @@
 package services;
 
 import domain.Bug;
+import domain.Severity;
 import domain.Tester;
 import domain.User;
 
@@ -51,4 +52,11 @@ public interface Service {
      * @param observer: Observer, the client that made the request
      */
     void removeObserver(Observer observer);
+
+    /**
+     * Method for filtering bugs, based on their severity
+     * @param severity: Severity, the desired severity
+     * @return list of bugs, all with severity
+     */
+    List<Bug> findBugsBySeverity(Severity severity);
 }

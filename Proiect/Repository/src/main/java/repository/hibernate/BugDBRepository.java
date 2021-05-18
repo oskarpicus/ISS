@@ -1,6 +1,7 @@
 package repository.hibernate;
 
 import domain.Bug;
+import domain.Severity;
 import domain.Tester;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -48,6 +49,30 @@ public class BugDBRepository extends AbstractDBRepository<Long, Bug> implements 
                 transaction.rollback();
         }
         logger.traceExit("Exit Find Bugs By Tester result {}", result);
+        return result;
+    }
+
+    @Override
+    public Iterable<Bug> findBugsBySeverity(Severity severity) {
+        logger.traceEntry("Entry Find Bugs By Severity {}", severity);
+        if (severity == null) {
+            throw logger.throwing(new IllegalArgumentException());
+        }
+        List<Bug> result = null;
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+            result = session.createQuery("FROM Bug where severity=:severity", Bug.class)
+                    .setParameter("severity", severity)
+                    .list();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e);
+            if (transaction != null)
+                transaction.rollback();
+        }
+        logger.traceExit("Exit Find Bugs By Severity result {}", result);
         return result;
     }
 }

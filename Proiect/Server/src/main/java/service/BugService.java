@@ -1,6 +1,7 @@
 package service;
 
 import domain.Bug;
+import domain.Severity;
 import domain.Tester;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,6 +57,19 @@ public class BugService {
         Iterable<Bug> result = repository.findAll();
         List<Bug> resultList = StreamSupport.stream(result.spliterator(), false).collect(Collectors.toList());
         logger.traceExit("Exit Find All Bugs {}", resultList);
+        return resultList;
+    }
+
+    /**
+     * Method for filtering bugs, based on their severity
+     * @param severity: Severity, the desired severity
+     * @return l: List<Bug>, containing all the bugs with severity
+     */
+    public List<Bug> findBugsBySeverity(Severity severity) {
+        logger.traceEntry("Entry Find Bugs By Severity {}", severity);
+        Iterable<Bug> result = repository.findBugsBySeverity(severity);
+        List<Bug> resultList = StreamSupport.stream(result.spliterator(), false).collect(Collectors.toList());
+        logger.traceExit("Exit Find Bugs By Severity {}", resultList);
         return resultList;
     }
 }
