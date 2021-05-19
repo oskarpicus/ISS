@@ -64,8 +64,9 @@ public class BugDBRepository extends AbstractDBRepository<Long, Bug> implements 
         Transaction transaction = null;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
-            result = session.createQuery("FROM Bug where severity=:severity", Bug.class)
+            result = session.createQuery("FROM Bug where severity=:severity and status!=:status", Bug.class)
                     .setParameter("severity", severity)
+                    .setParameter("status", Status.RESOLVED)
                     .list();
             transaction.commit();
         } catch (Exception e) {

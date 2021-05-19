@@ -130,7 +130,6 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
             bug.setProgrammer(p);
             if (this.service.updateBug(bug) == null) {
                 MyAlert.showMessage(null, Alert.AlertType.CONFIRMATION, "Confirmation", "Bug successfully resolved");
-                updatedBug(bug);
                 this.textAreaDescription.clear();
             }
             else
@@ -142,5 +141,24 @@ public class ProgrammerController extends UnicastRemoteObject implements Control
 
     public Bug getSelectedBug() {
         return tableViewBugs.getSelectionModel().getSelectedItem();
+    }
+
+    public void buttonInWorksBugClicked(ActionEvent actionEvent) {
+        Bug bug = getSelectedBug();
+        if (bug == null) {  // nothing was selected
+            MyAlert.showMessage(null, Alert.AlertType.WARNING, "Warning", "You have not selected any bug");
+            return;
+        }
+        try {
+            bug.setStatus(Status.IN_WORKS);
+            if (this.service.updateBug(bug) == null) {
+                MyAlert.showMessage(null, Alert.AlertType.CONFIRMATION, "Confirmation", "Updated bug successfully");
+            }
+            else {
+                MyAlert.showMessage(null, Alert.AlertType.WARNING, "Warning", "Failed to update bug");
+            }
+        } catch (Exception e) {
+            MyAlert.showErrorMessage(null, e.getMessage());
+        }
     }
 }
